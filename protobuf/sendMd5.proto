@@ -1,0 +1,31 @@
+syntax = "proto2";
+package myprotobuf;
+
+enum mainId
+{
+	cmd_heart=60000;
+	cmd_rcode=65001;
+	cmd_security =65002;
+}
+enum err_code
+{
+	versionError=1;
+	md5Error=2;
+	typeError=3;
+}
+
+message send_Rcode
+{
+	required  string rcode=1;
+}
+
+
+
+message cs_md5_security
+{
+    required int32 id = 1;
+    required int32 type = 2;
+    required int32 version=3;
+	 required string md5=4;
+}
+
