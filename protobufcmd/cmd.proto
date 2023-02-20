@@ -1,0 +1,8 @@
+package mycmd;
+option optimize_for = LITE_RUNTIME;
+enum cmd_code{
+
+    cmd_heart = 65000;
+	cmd_rcode =65001;
+	cmd_security =65002;
+}

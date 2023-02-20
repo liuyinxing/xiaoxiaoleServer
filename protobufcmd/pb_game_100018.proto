@@ -1,0 +1,82 @@
+package pb_game_100018;
+option optimize_for=LITE_RUNTIME;
+//-1 = Exit
+// 0 = J
+// 1 = Q
+// 2 = K
+// 3 = A
+// 4 = 牛
+// 5 = 狮
+// 6 = 鹰
+// 7 = 人
+// 8 = 月亮
+// 9 = wild
+// 10 = Scatter
+enum cmd_code
+{
+    mdm_game_notify = 180;              //游戏主协议ID
+    ass_game_roll = 80;                 //转动图标  cs:sc
+	ass_game_change_bet = 83;           //改变押注   cs:sc
+}
+
+enum error_code
+{
+    roll_bet_invalide = 1;          // 没有这个押注分数
+    roll_score_not_enough = 2;      // 分数不够
+	roll_mode_is_error = 3;         //游戏模式错误。
+}
+
+message lineHit{
+	required int32 lineNum = 1;   //线的标号
+	repeated int32 cellIdx = 2;   //图标索引
+}
+
+
+message cs_change_bet
+{
+	required int64  baseBet = 1; //押注分数
+}
+
+message sc_change_bet
+{
+	required int32 multiple_number =1 ;                     // 当前押注分数下的倍数
+}
+
+
+message sc_game_info
+{
+    required sc_game_roll gameinfo = 1;
+    required int32  gameLine = 2;       //游戏线数
+    // repeated int32  betList = 3;        //押注列表
+    required int32  defaultBet = 3;     //默认押注
+}
+
+//180:80|请求摇奖
+message cs_game_roll
+{
+    required int64 betScore = 1;                        //下注分数
+}
+
+
+//180:80 | 摇奖返回
+//code:0 ok
+//code:1,2 error
+message sc_game_roll
+{
+	required int32 currentMode = 1;                         // 当前模式（ 2 免费 1 普通 ）
+	required int32 nextMode    = 2;                         // 下一模式
+    required int64 winScore    = 3;                         // 中奖分数
+    required int64 freetotalwinScore    = 4;                // 免费模式下总中奖分数
+	required int64 jackpot     = 5;                         // 中的奖池分数
+    required int32 winType     = 6;                         // 中奖类型(小 中 大)
+	required int32 freeCount   = 7;                         // 免费计数
+    required int32 freeAllCount   = 8;                      // 总免费计数
+	required int32 multiple_number =9 ;                     // 普通模式下倍数
+    required int32 multiple_numberFree = 10;                // 免费模式下倍数
+    required int64 betScore = 11;                           // 本回合押注的分数
+    repeated int32 resultCells = 12;                        // 中奖图标
+    repeated int32 hitCells = 13;                           // 命中的图标
+	repeated lineHit hitLines =14;                          // 命中的线 
+    required int64 userScore = 15;                          // 玩家的总分数
+
+}

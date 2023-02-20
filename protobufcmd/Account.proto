@@ -1,0 +1,8 @@
+syntax = "proto2";
+package myprotobuf;
+message helloworld
+{
+    required int32 id = 1;
+    optional string name = 2;
+    optional string password=3;
+}
