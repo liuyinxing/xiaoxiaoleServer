@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GB2312"?>
+<root>
+  <gameserverid num="4"/>
+  <gsid1 id="1,2,101,102" serverid="3000" line="0"/>
+  <gsid2 id="11" serverid="3001" line="0"/>
+  <gsid3 id="1,2,3,4,5" serverid="3002" line="1"/>
+  <gsid4 id="6,7,8,9,10" serverid="3003" line="1"/>
+
+  <serverTotal num="4"/>
+  <server1 IP="127.0.0.1" Port="11000" ID="1000" Type="DB"/>
+  <server2 IP="127.0.0.1" Port="13000" ID="3000" Type="Game"/>
+  <server3 IP="127.0.0.1" Port="13001" ID="3001" Type="Game"/>
+  <server4 IP="127.0.0.1" Port="14000" ID="4000" Type="Gate"/>
+</root>
